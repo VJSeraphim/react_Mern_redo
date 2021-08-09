@@ -32,12 +32,12 @@ const Post = ({ post, setCurrentId }) => {
                 <Typography variant="body2" color="textSecondary">{post.tags.map((tag) => `#${tag} `)}</Typography>
             </div>
             <CardContent>
-                <Typography className={classes.title} variant="h5" gutterBottom>{post.message}</Typography>
+                <Typography className={classes.title} variant="body2" color="textSecondary" component="p" gutterBottom>{post.message}</Typography>
             </CardContent>
             <CardActions className={classes.cardActions}>
                 <Button size="small" color="primary" onClick={() => dispatch(likePost(post._id))}>
                     <ThumbUpAltIcon fontSize="small" />
-                    Like {post.likeCount}
+                    Like &nbsp; {post.likeCount}
                 </Button>
                 <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}>
                     <DeleteIcon fontSize="small" />
