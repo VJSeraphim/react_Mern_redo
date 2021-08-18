@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { AppBar, Typography, Button, Toolbar, Avatar } from '@material-ui/core'
-import {Link} from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 import useStyles from './styles'
 import memories from '../../images/memories.jpg'
@@ -8,6 +9,14 @@ import memories from '../../images/memories.jpg'
 const Navbar = () => {
     const classes = useStyles()
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
+    const dispatch = useDispatch()
+    const history = useHistory()
+
+    const logout = () => {
+        dispatch({ type: 'LOGOUT'})
+        history.push('/')
+        setUser(null)
+    }
 
     useEffect(() => {
         const token = user?.token
