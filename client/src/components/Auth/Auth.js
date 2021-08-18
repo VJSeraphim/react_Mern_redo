@@ -4,6 +4,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Input from './Input'
 import { GoogleLogin } from 'react-google-login'
 import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 import Icon from './icon'
 import useStyles from './styles'
@@ -13,6 +14,7 @@ const Auth = () => {
     const [showPassword, setShowPassword] = useState(false)
     const [isSignup, setIsSignup] = useState(false)
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const handleSubmit = () => {
 
@@ -37,6 +39,8 @@ const Auth = () => {
 
         try {
             dispatch({type: 'AUTH', data: {result, token}})
+
+            history.push('/')
         } catch (error) {
             console.log(error)
         }
