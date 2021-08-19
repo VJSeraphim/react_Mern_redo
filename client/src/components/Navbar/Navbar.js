@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { AppBar, Typography, Button, Toolbar, Avatar } from '@material-ui/core'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 import useStyles from './styles'
@@ -11,6 +11,7 @@ const Navbar = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
     const dispatch = useDispatch()
     const history = useHistory()
+    const location = useLocation()
 
     const logout = () => {
         dispatch({ type: 'LOGOUT'})
@@ -21,7 +22,7 @@ const Navbar = () => {
     useEffect(() => {
         const token = user?.token
         setUser(JSON.parse(localStorage.getItem('profile')))
-    }, [])
+    }, [location])
 
     return (
         <AppBar position="static" color="inherit" className={classes.appBar}>
