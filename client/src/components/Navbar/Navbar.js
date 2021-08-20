@@ -41,7 +41,7 @@ const Navbar = () => {
                         <Typography className={classes.userName} variant="h6">
                         {user.result.name}
                         </Typography>
-                        <Button variant="contained" className={classes.logout} color="secondary">
+                        <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>
                             LOGOUT
                         </Button>
                      </div>
