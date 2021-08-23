@@ -39,7 +39,7 @@ const Auth = () => {
 
     const googleSuccess = async (res) => {
         const result = res?.profileObj
-        const token= res?.tokenId
+        const token = res?.tokenId
 
         try {
             dispatch({type: AUTH, data: {result, token}})
