@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, CardActions, CardContent, CardMedia, Button, Typography} from '@material-ui/core'
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt'
+import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined'
 import DeleteIcon from '@material-ui/icons/Delete'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import moment from 'moment'
@@ -15,7 +16,7 @@ const Post = ({ post, setCurrentId }) => {
     const user = JSON.parse(localStorage.getItem('profile'))
 
     const Likes = () => {
-        if (post.likes.length > 0) {
+        if (post?.likes?.length > 0) {
             return post.likes.find((like) => like === (user?.result?.googleId || user?.result?._id)) ? (
                 <>
                     <ThumbUpAltIcon fontSize="small" />&nbsp;{post.likes.length > 2 ? `You and ${post.likes.length - 1} others` : `${post.likes.length} like${post.likes.length > 1 ? 's' : ''}` }
@@ -26,6 +27,7 @@ const Post = ({ post, setCurrentId }) => {
                 </>
             );
         }
+        return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
     }   
 
     return (
