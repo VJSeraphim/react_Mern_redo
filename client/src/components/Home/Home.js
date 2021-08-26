@@ -7,7 +7,7 @@ import ChipInput from 'material-ui-chip-input'
 import Posts from '../Posts/Posts'
 import Form from '../Form/Form'
 import Pagination from '../Pagination'
-import { getPosts } from '../../actions/posts'
+import { getPosts, getPostsBySearch } from '../../actions/posts'
 
 import useStyles from './styles'
 
@@ -21,7 +21,7 @@ const Home = () => {
     const history = useHistory()
     const dispatch = useDispatch()
 
-    const [currentId, setCurrentId] = useState(null)
+    const [currentId, setCurrentId] = useState(0)
     const [search, setSearch] = useState('')
     const [tags, setTags] = useState([])
 
@@ -47,8 +47,9 @@ const Home = () => {
     }
 
     const searchPost = () => {
-        if (search.trim()) {
-
+        if (search.trim() || tags) {
+            dispatch(getPostsBySearch({ search, tags: tags.join(',')}))
+            history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`)
         } else {
             history.push('/')
         }
@@ -67,10 +68,10 @@ const Home = () => {
                                 name="search"
                                 variant="outlined"
                                 label="Search Memories"
-                                onKeyPress={handleKeyPress}
+                                onKeyDown={handleKeyPress}
                                 fullWidth
                                 value={search}
-                                onChange={(e) => setSearch = e.target.value}
+                                onChange={(e) => setSearch(e.target.value)}
                             />
                             <ChipInput 
                                 style={{margin: '10px 0'}}
