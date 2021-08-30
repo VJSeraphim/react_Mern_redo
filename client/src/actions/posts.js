@@ -1,4 +1,4 @@
-import * as api from '../api'
+import * as api from '../api/index'
 import { FETCH_ALL, CREATE, UPDATE, DELETE, FETCH_ALL_BY_SEARCH, FETCH_POST, START_LOADING, END_LOADING } from '../constants/actionTypes' 
 
 export const getPosts = (page) => async(dispatch) => {
@@ -21,7 +21,7 @@ export const getPost = (id) => async(dispatch) => {
 
         const { data } = await api.fetchPost(id)
 
-        dispatch({type: FETCH_POST, payload: {post: data}})
+        dispatch({type: FETCH_POST, payload: data})
 
         dispatch({type: END_LOADING})
     } catch (error) {
