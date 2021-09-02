@@ -10,7 +10,7 @@ const CommentSection = ({ post }) => {
     const dispatch = useDispatch()
     const [comments, setComments] = useState([])
     const [comment, setComment] = useState('')
-    const user = JSON.parse(localStorage.getItem('user'))
+    const user = JSON.parse(localStorage.getItem('profile'))
 
     const handleClick = () => {
         const lastComment = `${user.result.name}: ${comment}`
@@ -30,23 +30,25 @@ const CommentSection = ({ post }) => {
                         </Typography>
                     ))}
                 </div>
-                <div style={{ width: '70%' }}>
-                    <Typography gutterBottom variant="h6">
-                        Write your comment here
-                    </Typography>
-                    <TextField 
-                        fullWidth
-                        rows={4}
-                        variant="outlined"
-                        label="Comment"
-                        multiline
-                        value={comment}
-                        onChange={(e) => setComment(e.target.value)}
-                    />
-                    <Button style={{ marginTop: '10px'}} fullWidth disabled={!comment} variant="contained" onClick={handleClick} color="primary">
-                        Submit
-                    </Button>
-                </div>
+                {user?.result?.name && (
+                    <div style={{ width: '70%' }}>
+                        <Typography gutterBottom variant="h6">
+                            Write your comment here
+                        </Typography>
+                        <TextField 
+                            fullWidth
+                            rows={4}
+                            variant="outlined"
+                            label="Comment"
+                            multiline
+                            value={comment}
+                            onChange={(e) => setComment(e.target.value)}
+                        />
+                        <Button style={{ marginTop: '10px'}} fullWidth disabled={!comment} variant="contained" onClick={handleClick} color="primary">
+                            Submit
+                        </Button>
+                    </div>
+                )}
             </div>
         </div>
     )
