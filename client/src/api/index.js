@@ -24,7 +24,7 @@ export const deletePost = (id) => API.delete(`/posts/${id}`)
 
 export const likePost = (id) => API.patch(`/posts/${id}/likePost`)
 
-export const comment = (value, id) => API.patch(`/posts/${id}/commentPost`, { value })
+export const comment = (value, id) => API.post(`/posts/${id}/commentPost`, { value })
 
 
 
